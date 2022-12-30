@@ -32,6 +32,7 @@ import Logo from '../assets/Logo.svg'
           <div class="d-flex gap-4 ">
              <a href="/login"><button type="button" class="btn log ">Log in</button></a> 
               <a href="/signup"><button type="button" class="btn sign ">Sign Up</button> </a> 
+              <router-link to="/login">login</router-link>
           </div>
         </div>
       </div>
