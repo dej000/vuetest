@@ -4,6 +4,12 @@
       <div class="hero d-flex justify-content-center align-items-center mt-4 container "> 
         <div class="">
     {{ message }}
+    <div class="alert alert-danger" id="hideDiv" role="alert" v-if="error">
+      {{error}}
+      </div>
+      <div class="alert alert-success" role="alert" v-if="success">
+        {{ success }}
+        </div>
     <Form
      @submit="onSubmit"
      :validation-schema="schema"
@@ -67,21 +73,22 @@
     </div>
       
      </div>
-    <!-- <FooterNavVue/> -->
+    <FooterNavVue/>
     </div>
   
   </template>
       
       <script>
-     // import FooterNavVue from '../components/FooterNav.vue';
+     import FooterNavVue from '../components/FooterNav.vue';
       import Navbarvue from '../components/Navbar.vue'
       import * as Yup from 'yup';
       import { Form } from 'vee-validate';
       import TextInput from '../components/TextInput.vue';
+      import axios from 'axios'
       
           export default {
               components :{
-      //    FooterNavVue,
+         FooterNavVue,
           Navbarvue,
           Form,
           TextInput
@@ -94,15 +101,36 @@
     password: Yup.string().min(6).required(),
     
   }),
-  loading:false
+  loading:false,
+    error:'',
+    success:''
       }
   
      },
      methods:{
    onSubmit(values) {
     this.loading=true;
+    axios.post(import.meta.env.VITE_BASE_URL+'login',values).then((res)=>{
+      this.loading=false;
+      this.success=res.data.message;
     
-    // alert(import.meta.env.VITE_BASE_URL);
+      this.timeout = setTimeout(()=>{
+     this.success = ''
+    }, 5000);
+    console.log(res)
+    localStorage.setItem('accessToken', res.data.data.Token);
+    })
+    .catch(err=>{
+      this.loading=false;
+     
+    this.error=err.response.data.message;
+    
+    this.timeout = setTimeout(()=>{
+     this.error = ''
+    }, 5000);
+    
+    })
+ 
   },
   
   onInvalidSubmit() {
