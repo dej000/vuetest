@@ -85,6 +85,7 @@
       import { Form } from 'vee-validate';
       import TextInput from '../components/TextInput.vue';
       import axios from 'axios'
+      import { useRouter, useRoute } from 'vue-router'
       
           export default {
               components :{
@@ -103,10 +104,12 @@
   }),
   loading:false,
     error:'',
-    success:''
+    success:'',
+    router: useRouter()
       }
   
      },
+     
      methods:{
    onSubmit(values) {
     this.loading=true;
@@ -117,8 +120,9 @@
       this.timeout = setTimeout(()=>{
      this.success = ''
     }, 5000);
-    console.log(res)
+    
     localStorage.setItem('accessToken', res.data.data.Token);
+    this.router.push('/dashboard')
     })
     .catch(err=>{
       this.loading=false;
@@ -131,6 +135,10 @@
     
     })
  
+  },
+
+  logout() {
+    localStorage.removeItem('accessToken');
   },
   
   onInvalidSubmit() {

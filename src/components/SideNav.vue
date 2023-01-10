@@ -2,10 +2,10 @@
     <div class="sidebar p-4 ">
       <a class="navbar-brand mb-5" href="/"><img :src="Logo" alt=""></a>
       <ul class="list-unstyled d-grid gap-4  " >
-          <li><a href="">Dashboard</a></li>
-          <li><a href="">Image Upload</a></li>
-          <li><a href="">Images</a></li>
-          <li><a href="">Billings</a></li>
+          <li>   <router-link   class="btn log "  to="/dashboard">Dashboard</router-link></li>
+          <li> <router-link   class="btn log "  to="/imageupload">Image Upload</router-link></li>
+          <li><router-link   class="btn log "  to="/images">Images</router-link></li>
+          <li>   <router-link   class="btn log "  to="/billing">Billings</router-link></li>
       </ul>
     </div>
   
@@ -45,4 +45,12 @@
       color: black;
       gap: 10px;
    }
+
+   .sidebar li:hover {
+    background: rgba(255,226,204,.5);
+    border-radius: 4px;
+    border-right: 4px solid #ff6c00;
+}
+
+
   </style>

@@ -6,11 +6,14 @@ import { Form } from 'vee-validate';
 import TextInput from './components/TextInput.vue';
 
 
+
+
 export default{
   components :{
     DashboardVue,
      TextInput,
      Form,
+    
    
     },
     data(){
@@ -47,7 +50,6 @@ onInvalidSubmit() {
 
 <template>
 
-
   <RouterView />
 </template>
 
@@ -83,6 +85,11 @@ onInvalidSubmit() {
 .submit-btn.invalid {
   animation: shake 0.5s;
     animation-iteration-count: infinite;
+}
+
+.contain{
+  padding-left: 180px;
+  padding-right: 40px;
 }
 
 @keyframes shake {
