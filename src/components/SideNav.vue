@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar p-4 ">
       <a class="navbar-brand mb-5" href="/"><img :src="Logo" alt=""></a>
-      <ul class="list-unstyled d-grid gap-4  " >
+      <ul class="list-unstyled d-grid gap-4  "  id="myDIV" >
           <li>   <router-link   class="btn log "  to="/dashboard">Dashboard</router-link></li>
           <li> <router-link   class="btn log "  to="/imageupload">Image Upload</router-link></li>
           <li><router-link   class="btn log "  to="/images">Images</router-link></li>
@@ -16,6 +16,7 @@
   import Logo from '../assets/Logo.svg'
   
       export default {
+        
           data(){
             return{
               Logo:Logo
@@ -52,5 +53,10 @@
     border-right: 4px solid #ff6c00;
 }
 
+a  .router-link-exact-active{
+  background: rgba(255,226,204,.5);
+  border-radius: 4px;
+  border-right: 4px solid #ff6c00;
+}
 
   </style>
